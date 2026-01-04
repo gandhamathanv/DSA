@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Queens Backtracking Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>N-Queens - Backtracking Visualizer</h1>
+            <p class="subtitle">Step-by-step explanation of the Backtracking approach</p>
+            <a href="../" class="back-link">&larr; Back to Home</a>
+        </header>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="boardSize">Board Size (N):</label>
+                <input type="number" id="boardSize" value="4" min="4" max="8">
+            </div>
+            <button id="visualizeBtn" class="btn-primary">Visualize</button>
+        </div>
+
+        <!-- Algorithm Explanation -->
+        <div class="algorithm-info">
+            <h3>Algorithm Overview:</h3>
+            <p><strong>Problem:</strong> Place N queens on an NxN chessboard so that no two queens attack each other.</p>
+            <p><strong>Key Insight:</strong> Queens attack along rows, columns, and diagonals. We place one queen per row.</p>
+            <p><strong>Base Case:</strong> When row == N, all queens are placed successfully.</p>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="controls-section" id="controls" style="display: none;">
+            <button id="prevBtn" class="btn-secondary" disabled>Previous</button>
+            <button id="nextBtn" class="btn-secondary">Next</button>
+            <button id="autoPlayBtn" class="btn-secondary">Auto Play</button>
+            <button id="resetBtn" class="btn-secondary">Reset</button>
+            <span class="step-counter">Step: <span id="currentStep">0</span> / <span id="totalSteps">0</span></span>
+        </div>
+
+        <!-- Phase Indicator -->
+        <div class="phase-indicator-section" id="phaseIndicator" style="display: none;">
+            <span class="phase-label">Current Phase:</span>
+            <span id="phaseText" class="phase-text"></span>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-content" id="mainContent" style="display: none;">
+            <!-- Chessboard Section -->
+            <div class="board-section">
+                <h3>Chessboard</h3>
+                <div class="board-container">
+                    <div id="chessboard" class="chessboard"></div>
+                </div>
+                <div class="legend">
+                    <span class="legend-item"><span class="legend-box queen"></span> Queen</span>
+                    <span class="legend-item"><span class="legend-box attempting"></span> Attempting</span>
+                    <span class="legend-item"><span class="legend-box attacked"></span> Under Attack</span>
+                </div>
+            </div>
+
+            <!-- Code Panel -->
+            <div class="code-section">
+                <h3>Algorithm Code</h3>
+                <pre><code id="codeDisplay">int solveNQueen(int row)
+{
+    // Base case: all queens placed
+    if (row == N)
+        return 1;
+
+    for (int col = 0; col < N; col++)
+    {
+        if (isSafe(row, col))
+        {
+            board[row][col] = 1;
+
+            if (solveNQueen(row + 1))
+                return 1;
+
+            // Backtrack
+            board[row][col] = 0;
+        }
+    }
+    return 0;
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Step Explanation Panel -->
+        <div class="explanation-section" id="explanationSection" style="display: none;">
+            <h3>Step Explanation</h3>
+            <div id="explanationContent" class="explanation-content">
+                <p>Click "Visualize" to start the algorithm visualization.</p>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h3>Final Result</h3>
+            <div id="resultContent" class="result-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

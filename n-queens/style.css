@@ -1,0 +1,507 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #667eea;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.input-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Buttons */
+.btn-primary {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Algorithm Info */
+.algorithm-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.algorithm-info h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.algorithm-info p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.algorithm-info code {
+    background: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Controls Section */
+.controls-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.step-counter {
+    margin-left: auto;
+    font-weight: 600;
+    color: #667eea;
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+
+/* Phase Indicator */
+.phase-indicator-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 10px;
+}
+
+.phase-label {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.phase-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+/* Main Content Grid */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Chessboard Section */
+.board-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.board-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+}
+
+.chessboard {
+    display: grid;
+    gap: 2px;
+    background: #333;
+    border: 4px solid #333;
+    border-radius: 4px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.cell.white {
+    background: #f0d9b5;
+}
+
+.cell.black {
+    background: #b58863;
+}
+
+.cell.queen {
+    background: #28a745 !important;
+    color: white;
+}
+
+.cell.attempting {
+    background: #ffc107 !important;
+}
+
+.cell.attacked {
+    background: #dc3545 !important;
+    opacity: 0.7;
+}
+
+.cell.safe-highlight {
+    box-shadow: inset 0 0 0 3px #00ff00;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-box.queen {
+    background: #28a745;
+}
+
+.legend-box.attempting {
+    background: #ffc107;
+}
+
+.legend-box.attacked {
+    background: #dc3545;
+}
+
+/* Code Section */
+.code-section {
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.code-section h3 {
+    color: #f8f9fa;
+    margin-bottom: 15px;
+}
+
+.code-section pre {
+    margin: 0;
+}
+
+.code-section code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #f8f9fa;
+}
+
+.code-section .highlight-line {
+    background-color: #667eea;
+    display: block;
+    margin: 0 -20px;
+    padding-left: 20px;
+}
+
+/* Explanation Section */
+.explanation-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ffc107;
+}
+
+.explanation-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.explanation-content {
+    color: #555;
+    line-height: 1.8;
+}
+
+.explanation-content p {
+    margin-bottom: 10px;
+}
+
+.explanation-content strong {
+    color: #333;
+}
+
+.explanation-content .step-detail {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    border-left: 3px solid #667eea;
+}
+
+.explanation-content .formula {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    margin: 10px 0;
+}
+
+/* Detailed Explanation Elements */
+.explanation-content .phase-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.explanation-content .loop-indicator {
+    background: #17a2b8;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-content .condition-pass {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-content .condition-fail {
+    background: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-content .backtrack {
+    background: #ffc107;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-content .success {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.explanation-content .explanation-hr {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 15px 0;
+}
+
+.explanation-content .indent {
+    margin-left: 20px;
+}
+
+.explanation-content .check-item {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 8px 0;
+    border-left: 3px solid #667eea;
+}
+
+.explanation-content .check-pass {
+    border-left-color: #28a745;
+}
+
+.explanation-content .check-fail {
+    border-left-color: #dc3545;
+}
+
+/* Result Section */
+.result-section {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    padding: 25px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.result-section h3 {
+    margin-bottom: 15px;
+}
+
+.result-content {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        background-color: #fff3cd;
+    }
+    50% {
+        background-color: #ffe69c;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: slideIn 0.3s ease-out;
+}

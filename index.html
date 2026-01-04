@@ -3,121 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Change DP Visualizer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DSA Visualizers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.3rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Coin Change (Minimum Coins) - DP Visualizer</h1>
-            <p class="subtitle">Step-by-step explanation of the Dynamic Programming approach</p>
+            <h1>DSA Visualizers</h1>
+            <p class="subtitle">Interactive Algorithm Visualizations with Step-by-Step Explanations</p>
         </header>
 
-        <!-- Input Section -->
-        <div class="input-section">
-            <div class="input-group">
-                <label for="coins">Coin Denominations (comma-separated):</label>
-                <input type="text" id="coins" value="1, 3, 4" placeholder="e.g., 1, 3, 4">
-            </div>
-            <div class="input-group">
-                <label for="amount">Target Amount:</label>
-                <input type="number" id="amount" value="6" min="1" max="20">
-            </div>
-            <button id="visualizeBtn" class="btn-primary">Visualize</button>
-        </div>
-
-        <!-- Algorithm Explanation -->
-        <div class="algorithm-info">
-            <h3>Algorithm Overview:</h3>
-            <p><strong>Problem:</strong> Find the minimum number of coins needed to make a target amount.</p>
-            <p><strong>DP Formula:</strong> <code>dp[i] = min(dp[i], dp[i - coin] + 1)</code> for each coin value.</p>
-            <p><strong>Base Case:</strong> <code>dp[0] = 0</code> (zero coins needed for amount 0)</p>
-        </div>
-
-        <!-- Navigation Controls -->
-        <div class="controls-section" id="controls" style="display: none;">
-            <button id="prevBtn" class="btn-secondary" disabled>Previous</button>
-            <button id="nextBtn" class="btn-secondary">Next</button>
-            <button id="autoPlayBtn" class="btn-secondary">Auto Play</button>
-            <button id="resetBtn" class="btn-secondary">Reset</button>
-            <span class="step-counter">Step: <span id="currentStep">0</span> / <span id="totalSteps">0</span></span>
-        </div>
-
-        <!-- Phase Indicator -->
-        <div class="phase-indicator-section" id="phaseIndicator" style="display: none;">
-            <span class="phase-label">Current Phase:</span>
-            <span id="phaseText" class="phase-text"></span>
-        </div>
-
-        <!-- Main Content Grid -->
-        <div class="main-content" id="mainContent" style="display: none;">
-            <!-- DP Table Section -->
-            <div class="dp-table-section">
-                <h3>DP Table</h3>
-                <div class="table-container">
-                    <table id="dpTable">
-                        <thead>
-                            <tr>
-                                <th>Index (Amount)</th>
-                                <th>DP Value (Min Coins)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dpTableBody">
-                        </tbody>
-                    </table>
-                </div>
+        <div class="cards-container">
+            <!-- Coin Change Card -->
+            <div class="card" onclick="window.location.href='coins/'">
+                <div class="card-icon"></div>
+                <h2>Coin Change</h2>
+                <p>Dynamic Programming approach to find the minimum number of coins needed to make a target amount.</p>
+                <span class="card-tag">Dynamic Programming</span>
             </div>
 
-            <!-- Code Panel -->
-            <div class="code-section">
-                <h3>Algorithm Code</h3>
-                <pre><code id="codeDisplay">int minCoins(int coins[], int n, int amount)
-{
-    int dp[amount + 1];
-
-    // Step 1: Initialize dp array
-    dp[0] = 0;
-    for (int i = 1; i <= amount; i++)
-        dp[i] = INT_MAX;
-
-    // Step 2: Fill dp array
-    for (int i = 1; i <= amount; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (coins[j] <= i && dp[i - coins[j]] != INT_MAX)
-            {
-                dp[i] = (dp[i] < dp[i - coins[j]] + 1)
-                        ? dp[i]
-                        : dp[i - coins[j]] + 1;
-            }
-        }
-    }
-
-    // Step 3: Return result
-    if (dp[amount] == INT_MAX)
-        return -1;
-    else
-        return dp[amount];
-}</code></pre>
+            <!-- N-Queens Card -->
+            <div class="card" onclick="window.location.href='n-queens/'">
+                <div class="card-icon">Q</div>
+                <h2>N-Queens</h2>
+                <p>Backtracking algorithm to place N queens on an NxN chessboard so that no two queens attack each other.</p>
+                <span class="card-tag">Backtracking</span>
             </div>
         </div>
 
-        <!-- Step Explanation Panel -->
-        <div class="explanation-section" id="explanationSection" style="display: none;">
-            <h3>Step Explanation</h3>
-            <div id="explanationContent" class="explanation-content">
-                <p>Click "Visualize" to start the algorithm visualization.</p>
-            </div>
-        </div>
-
-        <!-- Result Section -->
-        <div class="result-section" id="resultSection" style="display: none;">
-            <h3>Final Result</h3>
-            <div id="resultContent" class="result-content"></div>
+        <div class="footer">
+            <p>More visualizers coming soon...</p>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
